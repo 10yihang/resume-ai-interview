@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .title }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <header class="mb-4 text-center">
+            <h1>AI简历面试助手</h1>
+            <p class="lead">上传简历和职位描述，获取面试问题和评估</p>
+        </header>
+
+        <div class="row">
+            <!-- 上传区域 -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        第1步：上传简历和职位JD
+                    </div>
+                    <div class="card-body">
+                        <form id="resumeForm" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="resumeFile" class="form-label">上传简历 (PDF/TXT)</label>
+                                <input type="file" class="form-control" id="resumeFile" name="resume" accept=".pdf,.txt" required>
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary" id="uploadResumeBtn">上传简历</button>
+                            </div>
+                            <div id="resumeInfo" class="alert alert-success d-none"></div>
+                        </form>
+
+                        <hr>
+
+                        <form id="jdForm" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="jdFile" class="form-label">上传职位描述 (PDF/TXT)</label>
+                                <input type="file" class="form-control" id="jdFile" name="jd" accept=".pdf,.txt" required>
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary" id="uploadJDBtn">上传职位描述</button>
+                            </div>
+                            <div id="jdInfo" class="alert alert-success d-none"></div>
+                        </form>
+
+                        <hr>
+
+                        <div class="mb-3">
+                            <button id="generateBtn" class="btn btn-success w-100" disabled>生成面试问题</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 面试问题区域 -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        第2步：回答面试问题
+                    </div>
+                    <div class="card-body">
+                        <div id="questionsContainer" class="d-none">
+                            <h5>面试问题</h5>
+                            <div id="questionsList" class="list-group mb-3">
+                                <!-- 问题将在这里动态添加 -->
+                            </div>
+                            
+                            <div id="currentQuestion" class="mb-3 d-none">
+                                <div class="card">
+                                    <div class="card-header question-header">
+                                        <span id="currentQuestionText"></span>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label for="answerText" class="form-label">你的回答:</label>
+                                            <textarea class="form-control" id="answerText" rows="5" placeholder="请在此输入你的回答..."></textarea>
+                                        </div>
+                                        <button id="submitAnswerBtn" class="btn btn-primary">提交回答</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 评估结果区域 -->
+        <div class="row">
+            <div class="col-12 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        第3步：查看评估结果
+                    </div>
+                    <div class="card-body">
+                        <div id="evaluationContainer" class="d-none">
+                            <h5>回答评估</h5>
+                            <div id="evaluationResult" class="mb-3">
+                                <!-- 评估结果将在这里动态添加 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
